@@ -12,19 +12,19 @@ window.addEventListener("load", function() {
          alert("all fields are required!");
          event.preventDefault();
       }
-      if(isNaN(pilotName.value) !== true){
+      else if(isNaN(pilotName.value) !== true){
          alert("Invalid input for pilot name.");
          event.preventDefault();
       }
-      if(isNaN(copilotName.value) !== true){
+      else if(isNaN(copilotName.value) !== true){
          alert("Invalid input for co-pilot name.");
          event.preventDefault();
       }
-      if(isNaN(fuelLevel.value) === true){
+      else if(isNaN(fuelLevel.value) === true){
          alert("Invalid input for fuel level.");
          event.preventDefault();
       }
-      if(isNaN(cargoMass.value) === true){
+      else if(isNaN(cargoMass.value) === true){
          alert("Invalid input for cargo mass.");
          event.preventDefault();
       }
