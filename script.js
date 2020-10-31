@@ -13,8 +13,6 @@ window.addEventListener("load", function() {
    let launchStatus = document.getElementById("launchStatus");
    let missionTarget = document.getElementById("missionTarget");
 
-
-   // console.log(launchForm);
    launchForm.addEventListener("submit", function(event) {
       
       // validation to notify user of forgotten field
@@ -48,7 +46,7 @@ window.addEventListener("load", function() {
       // Updates pilot and co-pilot names based on user input
       pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready for launch`;
       copilotStatus.innerHTML = `Pilot ${copilotName.value} is ready for launch`;
-         // Launch Status Check updates based on user submitted fuel level
+      // Launch Status Check updates based on user submitted fuel level
       if(fuelLevel.value < 10000){
          fuelStatus.innerHTML = `Fuel level too low for launch`;
          launchStatus.innerHTML = `Shuttle not ready for launch`;
@@ -57,7 +55,7 @@ window.addEventListener("load", function() {
          fuelStatus.innerHTML = `Fuel level high enough for launch`;
       }
 
-         // Launch Status Check updates based on user submitted cargo level
+      // Launch Status Check updates based on user submitted cargo level
       if(cargoMass.value > 10000){
          cargoStatus.innerHTML = `Cargo level too high for launch`;
          launchStatus.innerHTML = `Shuttle not ready for launch`;
@@ -66,28 +64,30 @@ window.addEventListener("load", function() {
          cargoStatus.innerHTML = `Cargo mass low enough for launch`;
       };
 
-         // Launch Status Check updates based on proper fuel and cargo levels
+      // Launch Status Check updates based on proper fuel and cargo levels
       if(fuelLevel.value >= 10000 && cargoMass.value <= 10000){
          launchStatus.style.color = "green";
          launchStatus.innerHTML = `Shuttle is ready for launch`;
+        
       }
       faultyItems.style.visibility = "visible";
-      //fetch and display mission destination
-      fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
-         response.json().then(function(json) {
-            missionTarget.innerHTML += 
-               `<h2>Mission Destination</h2>
-               <ol>
-                  <li>Name: ${json[0].name}</li>
-                  <li>Diameter: ${json[0].diameter}</li>
-                  <li>Star: ${json[0].star}</li>
-                  <li>Distance from Earth: ${json[0].distance}</li>
-                  <li>Number of Moons: ${json[0].moons}</li>
-               </ol>
-               <img src="${json[0].image}">`;
-         });
-      });
+      
       event.preventDefault();
+   });
+   //fetch and display mission destination (Does not rely on submit button)
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
+      response.json().then(function(json) {
+         missionTarget.innerHTML += 
+            `<h2>Mission Destination</h2>
+            <ol>
+               <li>Name: ${json[0].name}</li>
+               <li>Diameter: ${json[0].diameter}</li>
+               <li>Star: ${json[0].star}</li>
+               <li>Distance from Earth: ${json[0].distance}</li>
+               <li>Number of Moons: ${json[0].moons}</li>
+            </ol>
+            <img src="${json[0].image}">`;
+      });
    });
 });
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
