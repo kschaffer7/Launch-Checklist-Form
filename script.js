@@ -77,7 +77,7 @@ window.addEventListener("load", function() {
    //fetch and display mission destination (Does not rely on submit button)
    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
       response.json().then(function(json) {
-         missionTarget.innerHTML += 
+         missionTarget.innerHTML = 
             `<h2>Mission Destination</h2>
             <ol>
                <li>Name: ${json[0].name}</li>
