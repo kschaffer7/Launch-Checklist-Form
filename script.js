@@ -45,10 +45,10 @@ window.addEventListener("load", function() {
       }
       // Updates launch info based on user input
    
-      // Updates pilot and co-pilot names
+         // Updates pilot and co-pilot names
       pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready for launch`;
       copilotStatus.innerHTML = `Pilot ${copilotName.value} is ready for launch`;
-      // If the user submits a fuel level less than 10,000 liters
+         // Launch Status Check updates based on user submitted fuel level
       if(fuelLevel.value < 10000){
          fuelStatus.innerHTML = `Fuel level too low for launch`;
          launchStatus.innerHTML = `Shuttle not ready for launch`;
@@ -57,7 +57,7 @@ window.addEventListener("load", function() {
          fuelStatus.innerHTML = `Fuel level high enough for launch`;
       }
 
-      //If the user submits a cargo mass that is more than 10,000 kilograms
+         // Launch Status Check updates based on user submitted cargo level
       if(cargoMass.value > 10000){
          cargoStatus.innerHTML = `Cargo level too high for launch`;
          launchStatus.innerHTML = `Shuttle not ready for launch`;
@@ -65,11 +65,12 @@ window.addEventListener("load", function() {
       }else{
          cargoStatus.innerHTML = `Cargo mass low enough for launch`;
       };
-
+         // Launch Status Check updates based on proper fuel and cargo levels
       if(fuelLevel.value >= 10000 && cargoMass.value <= 10000){
          launchStatus.style.color = "green";
          launchStatus.innerHTML = `Shuttle is ready for launch`;
       }
+
       faultyItems.style.visibility = "visible";
       event.preventDefault();
    });
