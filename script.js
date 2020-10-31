@@ -11,6 +11,7 @@ window.addEventListener("load", function() {
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus");
    let launchStatus = document.getElementById("launchStatus");
+   let missionTarget = document.getElementById("missionTarget");
 
 
    // console.log(launchForm);
@@ -43,9 +44,8 @@ window.addEventListener("load", function() {
          event.preventDefault();
          return;
       }
-      // Updates launch info based on user input
-   
-         // Updates pilot and co-pilot names
+
+      // Updates pilot and co-pilot names based on user input
       pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready for launch`;
       copilotStatus.innerHTML = `Pilot ${copilotName.value} is ready for launch`;
          // Launch Status Check updates based on user submitted fuel level
@@ -65,13 +65,28 @@ window.addEventListener("load", function() {
       }else{
          cargoStatus.innerHTML = `Cargo mass low enough for launch`;
       };
+
          // Launch Status Check updates based on proper fuel and cargo levels
       if(fuelLevel.value >= 10000 && cargoMass.value <= 10000){
          launchStatus.style.color = "green";
          launchStatus.innerHTML = `Shuttle is ready for launch`;
       }
-
       faultyItems.style.visibility = "visible";
+      //fetch and display mission destination
+      fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
+         response.json().then(function(json) {
+            missionTarget.innerHTML += 
+               `<h2>Mission Destination</h2>
+               <ol>
+                  <li>Name: ${json[0].name}</li>
+                  <li>Diameter: ${json[0].diameter}</li>
+                  <li>Star: ${json[0].star}</li>
+                  <li>Distance from Earth: ${json[0].distance}</li>
+                  <li>Number of Moons: ${json[0].moons}</li>
+               </ol>
+               <img src="${json[0].image}">`;
+         });
+      });
       event.preventDefault();
    });
 
@@ -87,4 +102,4 @@ window.addEventListener("load", function() {
    <li>Number of Moons: ${}</li>
 </ol>
 <img src="${}">
-*/
+*/ 
